@@ -15,7 +15,13 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/gossips/:id' do
-    puts "Hello #{params['id']}!"
+    @gossip = Gossip.find(params['id'])
+    
+    if @gossip
+      erb :show
+    else
+      "Aucun gossip trouvé pour cet ID !"
+    end
   end
 
 end
